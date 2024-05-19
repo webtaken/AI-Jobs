@@ -37,13 +37,13 @@ COPY ./ ./
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 # Configurar Whitenoise para servir archivos estáticos
-ENV DJANGO_SETTINGS_MODULE=config.settings.qa
+ENV DJANGO_SETTINGS_MODULE=config.settings.prod
 
 COPY --chown=django:django ./start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 # USER marcacionesnoc
 
