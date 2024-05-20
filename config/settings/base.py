@@ -57,7 +57,7 @@ DJANGO_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "whitenoise.runserver_nostatic",  # Only for whitenoise development
+    # "whitenoise.runserver_nostatic",  # Only for whitenoise development
     "django.contrib.staticfiles",
     "django.contrib.sites",
 ]
