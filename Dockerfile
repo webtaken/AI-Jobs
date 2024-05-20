@@ -15,12 +15,11 @@ RUN pip install poetry==1.4.2
 ENV POETRY_NO_INTERACTION=1 \
   POETRY_VIRTUALENVS_IN_PROJECT=1 \
   POETRY_VIRTUALENVS_CREATE=1 \
-  POETRY_CACHE_DIR=/tmp/poetry_cache \
-  RAILWAY_DOCKERFILE_PATH=/back
+  POETRY_CACHE_DIR=/tmp/poetry_cache
 
 WORKDIR /app
 
-COPY ${RAILWAY_DOCKERFILE_PATH}/pyproject.toml ${RAILWAY_DOCKERFILE_PATH}/poetry.lock ./
+COPY pyproject.toml poetry.lock ./
 RUN touch README.md
 
 RUN poetry install --only main --no-root && rm -rf $POETRY_CACHE_DIR
@@ -41,7 +40,7 @@ COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 # Configurar Whitenoise para servir archivos estáticos
 ENV DJANGO_SETTINGS_MODULE=config.settings.prod
 
-COPY --chown=django:django ${RAILWAY_DOCKERFILE_PATH}/start /start
+COPY --chown=django:django ./start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
