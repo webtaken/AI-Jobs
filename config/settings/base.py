@@ -62,9 +62,9 @@ DJANGO_APPS = [
     "django.contrib.sites",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ["django_htmx"]
 
-LOCAL_APPS = ["core", "users"]
+LOCAL_APPS = ["core", "users", "app"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -81,6 +81,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -88,7 +89,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -137,8 +138,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_ROOT = env.str("STATIC_ROOT_PATH")
 STATIC_URL = "/static/"
+# STATIC_ROOT = env.str("STATIC_ROOT_PATH")
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 MEDIA_ROOT = env.str("MEDIA_ROOT_PATH")
 MEDIA_URL = "/media/"
