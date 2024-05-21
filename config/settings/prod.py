@@ -34,6 +34,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+STATIC_ROOT = env.str("STATIC_ROOT_PATH")
 
 STORAGES = {
     "staticfiles": {

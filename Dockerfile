@@ -2,6 +2,7 @@ FROM python:3.11-slim-buster as base
 
 # Crear un usuario no root para ejecutar nuestra aplicación
 # RUN useradd -m marcacionesnoc
+ARG RAILWAY_SERVICE_ID
 
 RUN apt-get update \
   && apt-get -y install libpq-dev gcc python-psycopg2 \
@@ -10,7 +11,8 @@ RUN apt-get update \
 # --- Build Stage ---
 FROM python:3.11-buster as builder
 
-RUN pip install poetry==1.4.2
+RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/root/.cache/pip,target=/root/.cache/pip \
+  pip install poetry==1.4.2
 
 ENV POETRY_NO_INTERACTION=1 \
   POETRY_VIRTUALENVS_IN_PROJECT=1 \
@@ -22,8 +24,10 @@ WORKDIR /app
 COPY pyproject.toml poetry.lock ./
 RUN touch README.md
 
-RUN poetry install --only main --no-root && rm -rf $POETRY_CACHE_DIR
-RUN poetry add gunicorn
+RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/root/.cache/pip,target=/root/.cache/pip \ 
+  poetry install --only main --no-root && rm -rf $POETRY_CACHE_DIR
+RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/root/.cache/pip,target=/root/.cache/pip \
+  poetry add gunicorn
 
 # --- Final Stage ---
 FROM base as final
