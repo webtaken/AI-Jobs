@@ -26,10 +26,8 @@ WORKDIR /app
 COPY pyproject.toml poetry.lock ./
 RUN touch README.md
 
-RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/root/.cache/pip,target=/root/.cache/pip \ 
-  poetry install --only main --no-root && rm -rf $POETRY_CACHE_DIR
-RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/root/.cache/pip,target=/root/.cache/pip \
-  poetry add gunicorn
+RUN poetry install --only main --no-root && rm -rf $POETRY_CACHE_DIR
+RUN poetry add gunicorn
 
 # --- Final Stage ---
 FROM base as final
