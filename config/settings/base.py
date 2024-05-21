@@ -140,9 +140,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 # STATIC_ROOT = env.str("STATIC_ROOT_PATH")
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
 
 MEDIA_ROOT = env.str("MEDIA_ROOT_PATH")
 MEDIA_URL = "/media/"
