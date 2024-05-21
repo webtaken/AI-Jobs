@@ -11,7 +11,9 @@ RUN apt-get update \
 # --- Build Stage ---
 FROM python:3.11-buster as builder
 
-RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/root/.cache/pip,target=/root/.cache/pip \
+RUN echo $RAILWAY_SERVICE_ID
+
+RUN --mount=type=cache,id=s/$RAILWAY_SERVICE_ID-/root/.cache/pip,target=/root/.cache/pip \
   pip install poetry==1.4.2
 
 ENV POETRY_NO_INTERACTION=1 \
