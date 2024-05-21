@@ -18,10 +18,6 @@ DATABASES = {
 # Change the backend email for production!!!
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
 # In case of local all origins are allowed
 CORS_ALLOW_ALL_ORIGINS = True
 

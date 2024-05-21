@@ -27,7 +27,7 @@ env = Env(
     DJANGO_DB_PASSWORD=(str, "pass"),
     DJANGO_DB_HOST=(str, "127.0.0.1"),
     DJANGO_DB_PORT=(str, "5432"),
-    STATIC_ROOT_PATH=(str, str(BASE_DIR / "static")),
+    STATIC_ROOT_PATH=(str, str(BASE_DIR / "staticfiles")),
     MEDIA_ROOT_PATH=(str, str(BASE_DIR / "media")),
     ALLOWED_HOSTS=(list, []),
     CSRF_TRUSTED_ORIGINS=(list, []),
@@ -143,6 +143,9 @@ STATIC_URL = "/static/"
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 # ]
+STATIC_URL = "static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = env.str("STATIC_ROOT_PATH")
 
 MEDIA_ROOT = env.str("MEDIA_ROOT_PATH")
 MEDIA_URL = "/media/"
