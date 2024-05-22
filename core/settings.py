@@ -73,8 +73,6 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     "corsheaders",
     "django_htmx",
-    # "tailwind",
-    # "django_browser_reload",
 ]
 
 LOCAL_APPS = ["users", "app"]
@@ -92,7 +90,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    # "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -186,9 +183,3 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
-# Django-Tailwind settings
-# TAILWIND_APP_NAME = "theme"
-# INTERNAL_IPS = [
-#     "127.0.0.1",
-# ]
