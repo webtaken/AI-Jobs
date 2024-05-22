@@ -1,1 +1,0 @@
-web: export DJANGO_SETTINGS_MODULE=config.settings.prod && python manage.py wait_for_db && python manage.py migrate && gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker
