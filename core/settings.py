@@ -73,6 +73,7 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     "corsheaders",
     "django_htmx",
+    "compressor",
 ]
 
 LOCAL_APPS = ["users", "app"]
@@ -183,3 +184,10 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# Django compressor
+COMPRESS_ROOT = BASE_DIR / "static"
+
+COMPRESS_ENABLED = True
+
+STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
