@@ -61,14 +61,26 @@ CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS")
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
 
 # Application definition
-DEFAULT_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-]
+DEFAULT_APPS = (
+    [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+    ]
+    if not DEBUG
+    else [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "whitenoise.runserver_nostatic",
+        "django.contrib.staticfiles",
+    ]
+)
 
 THIRD_PARTY_APPS = [
     "corsheaders",
@@ -80,7 +92,7 @@ if DEBUG:
         "django_browser_reload",
     ]
 
-LOCAL_APPS = ["users", "app"]
+LOCAL_APPS = ["users", "app", "alerts"]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

@@ -1,6 +1,36 @@
 {% extends 'app/base.html' %} {% block content %}
-<h1 class="text-3xl font-bold text-center">
-  Find the best jobs on AI industry <br />for LATAM and the US
-</h1>
+<div class="my-20">
+  <h1 class="text-3xl font-bold text-center">
+    Find the best jobs in AI industry
+  </h1>
+  <p class="text-medium text-center">
+    Get hired in a next generation AI company right now.
+  </p>
+  <form
+    hx-post="{% url 'alerts:set_alert' %}"
+    hx-target="#alert_result"
+    method="post"
+    class="flex flex-col justify-center gap-y-4"
+    hx-disabled-elt="button"
+  >
+    {% csrf_token %}
+    <label class="form-control w-full max-w-xs mx-auto">
+      <div class="label">
+        <span class="label-text">Receive job alerts on your email</span>
+      </div>
+      <input
+        type="email"
+        name="email"
+        placeholder="success@getajob.com"
+        class="input input-bordered input-primary w-full max-w-xs"
+      />
+    </label>
+    <button class="btn btn-info text-base-100 mx-auto">
+      <span class="loading loading-spinner loading-xs my-indicator"></span>
+      Subscribe
+    </button>
+  </form>
+  <div id="alert_result" class="flex justify-center py-2"></div>
+</div>
 
 {% endblock %}

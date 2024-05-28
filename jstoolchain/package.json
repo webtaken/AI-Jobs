@@ -5,15 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tailwind-watch": "tailwindcss -i ../static/src/input.css -o ../static/src/output.css --watch",
-    "tailwind-build": "tailwindcss -i ../static/src/input.css -o ../static/src/output.css --minify"
+    "tailwind-watch": "tailwindcss -i ../static/css/input.css -o ../static/css/output.css --watch",
+    "tailwind-build": "tailwindcss -i ../static/css/input.css -o ../static/css/output.css --minify"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "daisyui": "^4.11.1",
     "tailwindcss": "^3.4.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "caniuse-lite": "^1.0.30001624"
+  }
 }

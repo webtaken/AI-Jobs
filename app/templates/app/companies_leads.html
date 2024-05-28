@@ -1,0 +1,68 @@
+{% extends 'app/base.html' %} {% block content %}
+<div class="my-10">
+  <h1 class="text-3xl font-bold text-center">Hire with us</h1>
+  <p class="text-medium text-center">
+    We'll promote your open positions and <br />
+    contact for you the top talent in AI.
+  </p>
+  <form
+    hx-post="{% url 'alerts:lead_company' %}"
+    hx-target="#hire_result"
+    method="post"
+    class="flex flex-col justify-center"
+    hx-disabled-elt="button"
+  >
+    {% csrf_token %}
+    <label class="form-control w-full max-w-xs mx-auto">
+      <div class="label">
+        <span class="label-text">Company</span>
+      </div>
+      <input
+        type="text"
+        name="company_name"
+        placeholder="My Company"
+        class="input input-bordered input-primary w-full max-w-xs"
+      />
+    </label>
+    <label class="form-control w-full max-w-xs mx-auto">
+      <div class="label">
+        <span class="label-text">Email</span>
+      </div>
+      <input
+        type="email"
+        name="email"
+        placeholder="company@ai.com"
+        class="input input-bordered input-primary w-full max-w-xs"
+      />
+    </label>
+    <label class="form-control w-full max-w-xs mx-auto">
+      <div class="label">
+        <span class="label-text">Company URL</span>
+      </div>
+      <input
+        type="text"
+        name="company_url"
+        placeholder="https://mycompany.com"
+        class="input input-bordered input-primary w-full max-w-xs"
+      />
+    </label>
+    <label class="form-control w-full max-w-xs mx-auto">
+      <div class="label">
+        <span class="label-text">Country</span>
+      </div>
+      <input
+        type="text"
+        name="country"
+        placeholder="United States, Mexico..."
+        class="input input-bordered input-primary w-full max-w-xs"
+      />
+    </label>
+    <button class="btn btn-info text-base-100 mx-auto my-4">
+      <span class="loading loading-spinner loading-xs my-indicator"></span>
+      Start Hiring
+    </button>
+  </form>
+  <div id="hire_result" class="flex justify-center py-2"></div>
+</div>
+
+{% endblock %}
